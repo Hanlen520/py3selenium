@@ -31,13 +31,13 @@ MicrosoftWebDriver(Edge):https://developer.microsoft.com/en-us/microsoft-edge/to
         self.find_element_by_xpath("//div[text()='%s']" % category).click()       # 点击'客戶管理'
         self.find_element_by_xpath("//div[text()='%s']/../following-sibling::div[1]//span[text()='%s']" %(category, subCategory)).click()      # 統一賬號提案
         time.sleep(3)
-配置文件信息（config.ini）：
-[BS]
-env = test
-timeout = 10
-base_url = http://192.168.35.100:8083
-admin = fxadmin
-password = 123456
+配置文件信息（config.ini）：<br>
+[BS]<br>
+env = test<br>
+timeout = 10<br>
+base_url = http://192.168.35.100:8083<br>
+admin = fxadmin<br>
+password = 123456<br>
 读取配置文件数据<br>
 
 class ReadConfig:
