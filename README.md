@@ -1,31 +1,31 @@
 # py3selenium
-关于框架：
-py3selenium框架基于Selenium+Unittest搭建的WebUI自动化测试框架
-特点：
-使用POM（页面对象模式）设计，使代码更加有逻辑性，测试脚本更加规范，后期更加容易维护以及复用性更高
-支持多种定位方式，包括（xpath/css/class/ID/text/link_text/name）
-框架集成了Selenium的常用定位方法，使元素定位更加方便
-使用HTMLTestRunner作为自动生成测试报告，报告更加美观，更加详细，内容更丰富
-Logging日志输出，可以看到每一步做的操作
-Excel作为数据管理，实现代码，数据分离，使框架的使用起来更加简单
-部署环境：
-Python 3.0及以后版本
-使用到的package主要有：
-unittest, selenium, configparser, xlrd, logging
-支持的浏览器及驱动：
-基于Selenium支持的所有浏览器
-browser == "Chrome"
-browser == "firefox"
-browser == "IE"
-browser == "phantomjs"
-browser == "opera"
-browser == "edge"
-geckodriver(Firefox):https://github.com/mozilla/geckodriver/releases
-Chromedriver(Chrome):https://sites.google.com/a/chromium.org/chromedriver/home
-IEDriverServer(IE):http://selenium-release.storage.googleapis.com/index.html
-operadriver(Opera):https://github.com/operasoftware/operachromiumdriver/releases
-MicrosoftWebDriver(Edge):https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver
-定位元素方式：
+关于框架：<br>
+py3selenium框架基于Selenium+Unittest搭建的WebUI自动化测试框架<br>
+特点：<br>
+使用POM（页面对象模式）设计，使代码更加有逻辑性，测试脚本更加规范，后期更加容易维护以及复用性更高<br>
+支持多种定位方式，包括（xpath/css/class/ID/text/link_text/name）<br>
+框架集成了Selenium的常用定位方法，使元素定位更加方便<br>
+使用HTMLTestRunner作为自动生成测试报告，报告更加美观，更加详细，内容更丰富<br>
+Logging日志输出，可以看到每一步做的操作<br>
+Excel作为数据管理，实现代码，数据分离，使框架的使用起来更加简单<br>
+部署环境：<br>
+Python 3.0及以后版本<br>
+使用到的package主要有：<br>
+unittest, selenium, configparser, xlrd, logging<br>
+支持的浏览器及驱动：<br>
+基于Selenium支持的所有浏览器<br>
+browser == "Chrome"<br>
+browser == "firefox"<br>
+browser == "IE"<br>
+browser == "phantomjs"<br>
+browser == "opera"<br>
+browser == "edge"<br>
+geckodriver(Firefox):https://github.com/mozilla/geckodriver/releases<br>
+Chromedriver(Chrome):https://sites.google.com/a/chromium.org/chromedriver/home<br>
+IEDriverServer(IE):http://selenium-release.storage.googleapis.com/index.html<br>
+operadriver(Opera):https://github.com/operasoftware/operachromiumdriver/releases<br>
+MicrosoftWebDriver(Edge):https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver<br>
+定位元素方式：<br>
 class IndexPage(BasePage):
     def get_user_name(self):
         # 获取用户昵称
