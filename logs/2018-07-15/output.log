@@ -1,0 +1,5 @@
+2018-07-15 19:18:49,303 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] START- 描述:验证正常登陆
+2018-07-15 19:19:20,590 [login_page.py][line:11][INFO] Could not find the selector: [userNo]
+2018-07-15 19:21:13,796 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] START- 描述:验证正常登陆
+2018-07-15 19:21:45,099 [login_page.py][line:11][INFO] Could not find the selector: [userNo]
+2018-07-15 19:21:45,163 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] END

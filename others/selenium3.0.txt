@@ -1,0 +1,29 @@
+selenium 3.0发布
+记得3年前selenium core team就放出风声selenium3.0将在某个圣诞节发布，然而大家等了3年，就在所有人都不再关注selenium进度的时候，selenium3.0 beta1悄悄发布，传送门在这里。
+
+本次更新没有什么特别引人注目的地方，起码看起来是这样，不过仔细的看一下更新内容，我们发现这几年来selenium的发展其实是非常稳健的，webdriver协议现在俨然已经成了各家浏览器提供商共同支持的官方标准。
+
+更新内容
+	去掉了对selenium rc的支持。这么多年了，rc终于退出了历史舞台。这标志着webdriver协议最终一统江湖。说实话，rc毕竟是继子，webdriver才是亲儿子，假儿子给真儿子让路，豪门继承权尘埃落定。
+
+	全面拥抱java 8。 如果你需要使用selenium的java binding话，那么你就必须使用java 8了。这个不奇怪，毕竟java 8是Oracle官方支持的版本。不出意外selenium的standalone server也必须运行在java 8上了。
+
+	支持macOS (Sierra or later)，支持官方的safaridriver。 还记得当年配置safari driver时各种操蛋的经历吗？还记得safari driver从入门到放弃的过程么？现在应该不会了吧，毕竟apple现在出了官方的safari drvier版本。从这里我们可以看出，对于webdriver协议，apple是买单的。
+
+	通过ms官方的webdriver server支持Edge浏览器。又是一个官方的版本，ms表示坚决支持webdriver协议的内容，这也意味着以前性能及稳定性都很差劲的ie driver应该逐渐被淘汰掉了。
+
+	只支持ie 9.0版本以上。这是必然的，以前的ie driver是第三方版本，亲儿子发布了，私生子自然要退出历史舞台了。
+
+	通过Mozilla官方的geckodriver来支持firefox。尽管firefox driver非常的稳定高效，但firefox driver毕竟是google实现的，现在亲儿子geckodriver来了。geckodriver的出现是必然的结果，因为最新版本的firefox换引擎了，老的firefox driver应该是不支持新引擎的。看到这里你是不是有这样的疑问，我所说的firefox driver究竟是个什么鬼，为什么你一次都没下载运行过？这是因为firefox driver包含在selenium各语言版本的分发包里，使用webdriver启动firefox的时候，webdriver会为firefox安装firefox driver扩展。
+
+要不要更新
+	见仁见智。如果你需要测试edge或者是safari的话，那么更新是必要的，否则的话我们可以选择等待下一个beta版本。
+
+selenium3.0的发布意味着什么
+	webdriver 协议现在已经成为业内公认的浏览器ui测试的标准实现。简而言之，做浏览器ui测试，请认准selenium webdriver商标。webdriver协议是google对开源测试领域的重要贡献，感谢google赏饭吃。
+
+	各种官方支持意味着以后的浏览器ui测试的速度和稳定性会有较大的提升。selenium 2.0时代只有chrome driver是官方出品(我是不是忘了opera driver？？)，其它实现均是第三方。从稳定性上说，2.0时代最稳定的测试浏览器是chrome和firefox，其它浏览器支持均或多或少有些问题，不过这些问题应该是一去不复返了吧。什么时候appnium会有官方的支持呢？
+
+	浏览器ui自动化测试已经成为了行业标配。这也是为什么几乎所有浏览器厂商都推出自己官方driver的原因。
+
+selenium专注web测试。这个问题几年前selenium团队就应该做了解答，app的测试就交给更专业的app测试工具去做吧。
