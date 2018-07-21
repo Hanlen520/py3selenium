@@ -26,11 +26,11 @@ IEDriverServer(IE):http://selenium-release.storage.googleapis.com/index.html<br>
 operadriver(Opera):https://github.com/operasoftware/operachromiumdriver/releases<br>
 MicrosoftWebDriver(Edge):https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver<br>
 定位元素方式：<br>
-class IndexPage(BasePage):
-    def get_user_name(self):
-        # 获取用户昵称
-        name = self.find_element_by_class_name('top_menu_user').text
-        return name
+class IndexPage(BasePage):<br>
+    def get_user_name(self):<br>
+        # 获取用户昵称<br>
+        name = self.find_element_by_class_name('top_menu_user').text<br>
+        return name<br>
 
     def page_navigation(self, category, subCategory, sunCategory=None):
         self.find_element_by_xpath("//div[text()='%s']" % category).click()       # 点击'客戶管理'
