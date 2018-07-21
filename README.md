@@ -38,7 +38,7 @@ timeout = 10<br>
 base_url = http://192.168.35.100:8083<br>
 admin = fxadmin<br>
 password = 123456<br>
-读取配置文件数据<br>
+读取配置文件数据：<br>
 
 class ReadConfig:
 
@@ -104,9 +104,9 @@ class TestLogin(BaseSeleniumTestCase):
             excelDict[colnames[j]] = row[j]  # 表头与数据对应
         return excelDict
 Excel数据维护格式：<br>
-caseName	          description	 username	password	indexname	 一级目录	  二级目录	三级目录	稱謂	中文姓名	國籍<br>
-test_login_success	验证正常登陆	fxadmin	 123456	   fxadmin<br>						
-test_open_account	  验证正常开户	fxadmin	 123456		 客戶管理	  統一賬號提案		              先生	 超人	    中國<br>
+caseName                description     username    password    indexname   一级目录   稱謂   中文姓名    國籍<br>
+test_login_success      验证正常登陆      fxadmin     123456      fxadmin<br>						
+test_open_account       验证正常开户      fxadmin     123456      客戶管理	  統一賬號提案    先生  超人  中國<br>
 
 【核心亮点一】：
 pages/base_page.py中，加了一个装饰器，如下：
