@@ -26,12 +26,6 @@ IEDriverServer(IE):http://selenium-release.storage.googleapis.com/index.html<br>
 operadriver(Opera):https://github.com/operasoftware/operachromiumdriver/releases<br>
 MicrosoftWebDriver(Edge):https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver<br>
 定位元素方式：<br>
-class IndexPage(BasePage):<br>
-    def get_user_name(self):<br>
-        # 获取用户昵称<br>
-        name = self.find_element_by_class_name('top_menu_user').text<br>
-        return name<br>
-
     def page_navigation(self, category, subCategory, sunCategory=None):
         self.find_element_by_xpath("//div[text()='%s']" % category).click()       # 点击'客戶管理'
         self.find_element_by_xpath("//div[text()='%s']/../following-sibling::div[1]//span[text()='%s']" %(category, subCategory)).click()      # 統一賬號提案
@@ -43,11 +37,10 @@ timeout = 10
 base_url = http://192.168.35.100:8083
 admin = fxadmin
 password = 123456
-读取配置文件数据
+读取配置文件数据<br>
+
 class ReadConfig:
-    """
-    创建ConfigParser对象，读取指定目录conf_path配置文件config_name
-    """
+
     def __init__(self, config_name):
         self.conf = configparser.ConfigParser()
         # 中文乱码问题需要添加encoding="utf-8-sig"
@@ -62,6 +55,7 @@ class ReadConfig:
         return value
 数据驱动设计：
 （1）page脚本中的方法需要根据业务设定参数，如（参数列表中的username和password）：
+
     def login_with_username_and_password(self, username, password):
         element = self.find_element_by_id('userNo')     # 账号
         element.clear()
@@ -70,7 +64,9 @@ class ReadConfig:
         element.clear()
         element.send_keys(password)
 (2)case脚本调用多个page脚本中的方法，根据业务，组合成为一个业务场景，在调用过程中，传入对应的参数： 
+
 class TestLogin(BaseSeleniumTestCase):
+
     def setUp(self):
         super().setUp()
         LoginPage(self.selenium).goto_base_page()
@@ -84,6 +80,7 @@ class TestLogin(BaseSeleniumTestCase):
         except AssertionError as e:
             self.logger.error(e)
 （3）步骤（2）中的dataDict是一个自己封装的方法，可以根据当前case的方法名去解析Excel中跟这个方法名相同的case_name,并获取到excel中该行的数据与表头组合成为一个字典，解析过程：
+
     def get_excel_data_by_casename(self, excelFile, colIndex=0, sheetName=u'test_csv'):  # 修改自己路径
         test_name = self.get_current_case_name()  # 获取调用函数的函数名称(test_name)
         data = xlrd.open_workbook(excelFile)
@@ -105,15 +102,16 @@ class TestLogin(BaseSeleniumTestCase):
             #     continue
             excelDict[colnames[j]] = row[j]  # 表头与数据对应
         return excelDict
-Excel数据维护格式：
-caseName	          description	 username	password	indexname	 一级目录	  二级目录	三级目录	稱謂	中文姓名	國籍
-test_login_success	验证正常登陆	fxadmin	 123456	   fxadmin						
-test_open_account	  验证正常开户	fxadmin	 123456		 客戶管理	  統一賬號提案		              先生	 超人	    中國
+Excel数据维护格式：<br>
+caseName	          description	 username	password	indexname	 一级目录	  二级目录	三级目录	稱謂	中文姓名	國籍<br>
+test_login_success	验证正常登陆	fxadmin	 123456	   fxadmin<br>						
+test_open_account	  验证正常开户	fxadmin	 123456		 客戶管理	  統一賬號提案		              先生	 超人	    中國<br>
 
 【核心亮点一】：
 pages/base_page.py中，加了一个装饰器，如下：
+
 def fail_on_screenshot(function):
-    '运行出现失败时保存截图的路径'
+
     def get_screenshot_dir():
         if not os.path.exists(settings.SCREENSHOT_DIR):
             os.mkdir(settings.SCREENSHOT_DIR)
@@ -146,16 +144,16 @@ def fail_on_screenshot(function):
         self.get_traceback_info()
         return WebDriverWait(self.selenium, wait_time).until(
             expected.frame_to_be_available_and_switch_to_it(iframe))
-好处：所有page页面的元素识别都是调用加了装饰器的find_element方法，不需要在逻辑的每一句加入断言和日志打印以及截图的代码，大大精简了代码，且日志打印的非常明确，直接看出是那个py文件的哪一行有错误。
-【核心亮点二】：
-因unittest在脚本执行顺序上一直有一个痛点，就是脚本执行顺序很难人为控制(用过unittest的都懂)，而在实际业务中，往往脚本是需要设定执行顺序的，脚本之间想完全独立，很难。基于这个痛点，我设计了一套逻辑可以让脚本按照自己编排好的顺序来批量执行，详情可参照我的CSDN博客发表文章：
-https://blog.csdn.net/xinyuanjing123/article/details/80793651
+好处：所有page页面的元素识别都是调用加了装饰器的find_element方法，不需要在逻辑的每一句加入断言和日志打印以及截图的代码，大大精简了代码，且日志打印的非常明确，直接看出是那个py文件的哪一行有错误。<br>
+【核心亮点二】：<br>
+因unittest在脚本执行顺序上一直有一个痛点，就是脚本执行顺序很难人为控制(用过unittest的都懂)，而在实际业务中，往往脚本是需要设定执行顺序的，脚本之间想完全独立，很难。基于这个痛点，我设计了一套逻辑可以让脚本按照自己编排好的顺序来批量执行，详情可参照我的CSDN博客发表文章：<br>
+https://blog.csdn.net/xinyuanjing123/article/details/80793651<br>
 好处：自然就是可以让脚本按照自己编排的顺序执行，当脚本具有耦合性时，完美解决问题。
 
-日志输出
-2018-07-15 19:18:49,303 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] START- 描述:验证正常登陆
-2018-07-15 19:19:20,590 [login_page.py][line:11][INFO] Could not find the selector: [userNo]
-2018-07-15 19:21:13,796 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] START- 描述:验证正常登陆
-2018-07-15 19:21:45,099 [login_page.py][line:11][INFO] Could not find the selector: [userNo]
-2018-07-15 19:21:45,163 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] END
+日志输出<br>
+2018-07-15 19:18:49,303 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] START- 描述:验证正常登陆<br>
+2018-07-15 19:19:20,590 [login_page.py][line:11][INFO] Could not find the selector: [userNo]<br>
+2018-07-15 19:21:13,796 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] START- 描述:验证正常登陆<br>
+2018-07-15 19:21:45,099 [login_page.py][line:11][INFO] Could not find the selector: [userNo]<br>
+2018-07-15 19:21:45,163 [test_login.py][TestLogin][INFO] CASE-->>[test_login_success] END<br>
 生成测试报告：自动添加到report目录下，根据时间命名的文件。报告模板是用的通用的 HTMLTestRunner 
