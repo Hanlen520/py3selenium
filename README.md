@@ -25,7 +25,8 @@ Chromedriver(Chrome):https://sites.google.com/a/chromium.org/chromedriver/home<b
 IEDriverServer(IE):http://selenium-release.storage.googleapis.com/index.html<br>
 operadriver(Opera):https://github.com/operasoftware/operachromiumdriver/releases<br>
 MicrosoftWebDriver(Edge):https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver<br>
-定位元素方式：<br>
+定位元素方式：
+
     def page_navigation(self, category, subCategory, sunCategory=None):
         self.find_element_by_xpath("//div[text()='%s']" % category).click()       # 点击'客戶管理'
         self.find_element_by_xpath("//div[text()='%s']/../following-sibling::div[1]//span[text()='%s']" %(category, subCategory)).click()      # 統一賬號提案
@@ -53,7 +54,7 @@ class ReadConfig:
     def get_db(self, name):
         value = self.conf.get("DB", name)
         return value
-数据驱动设计：
+数据驱动设计：<br>
 （1）page脚本中的方法需要根据业务设定参数，如（参数列表中的username和password）：
 
     def login_with_username_and_password(self, username, password):
